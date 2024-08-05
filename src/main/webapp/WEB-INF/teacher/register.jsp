@@ -12,5 +12,14 @@
 </head>
 <body>
 
+
+<form action="/teacher/register" method="post">
+    <label>Exam Name</label>
+    <input name="e_name" type="text">
+    <label>Excel</label>
+    <input name="q_file" type="file">
+</form>
+
+
 </body>
 </html>
