@@ -51,7 +51,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
     implementation 'org.apache.poi:poi-ooxml:5.2.2'
-
+    // https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+    implementation 'com.zaxxer:HikariCP:5.0.1'
 
 }
 
