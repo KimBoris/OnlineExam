@@ -43,6 +43,8 @@ dependencies {
 
     implementation 'org.slf4j:slf4j-simple:2.0.13'
 
+// https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+    implementation 'com.zaxxer:HikariCP:5.0.1'
 
     // https://mvnrepository.com/artifact/org.apache.poi/poi
     implementation 'org.apache.poi:poi:5.2.2'
