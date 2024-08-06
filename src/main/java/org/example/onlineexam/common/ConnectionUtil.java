@@ -4,10 +4,10 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 
-public enum ConncetionUtil {
+public enum ConnectionUtil {
     INSTANCE;
 
-    ConncetionUtil(){
+    ConnectionUtil(){
         HikariConfig config = new HikariConfig();
         config.setDriverClassName("org.mariadb.jdbc.Driver");
         config.setJdbcUrl("jdbc:mariadb://112.185.50.204:13306/miniexam");
