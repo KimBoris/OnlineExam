@@ -6,9 +6,20 @@
 </head>
 <body>
 <h1>${eno}. ${ename}</h1>
-<c:forEach items="gradeList" var="grade">
-    <a href="/teacher/detailgrade?e_no=${eno}&s.no=${grade.s_no}">${grade.s_name}</a>
-    <span>${grade.totalScore}점</span>
-</c:forEach>
+<ul>
+    <c:forEach items="gradeList" var="grade">
+        <li>
+            <a href="/teacher/detailgrade?e_no=${eno}&s_no=${grade.s_no}">${grade.s_name}</a>
+            <span>${grade.totalScore}/10 점</span>
+            <form action="/teacher/detailgrade" method="post">
+                <input type="text" name="e_no" value="${eno}">
+                <input type="text" name="s_no" value="${grade.s_no}">
+                <input type="text" name="s_name" value="${grade.s_name}">
+                <input type="text" name="score" value="${grade.totalScore}">
+                <button>보기</button>
+            </form>
+        </li>
+    </c:forEach>
+</ul>
 </body>
 </html>

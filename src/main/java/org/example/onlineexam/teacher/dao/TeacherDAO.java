@@ -3,6 +3,7 @@ package org.example.onlineexam.teacher.dao;
 import lombok.Cleanup;
 import lombok.extern.log4j.Log4j2;
 import org.example.onlineexam.common.ConnectionUtil;
+import org.example.onlineexam.teacher.vo.DetailVO;
 import org.example.onlineexam.teacher.vo.ExamVO;
 import org.example.onlineexam.teacher.vo.GradeVO;
 import org.example.onlineexam.teacher.vo.TeacherVO;
@@ -52,12 +53,14 @@ public enum TeacherDAO {
         return Optional.of(vo);
     }
 
+    // 시험 데이터 리스트
     public List<ExamVO> getExam() throws Exception {
 
         String query = """
                 select e_no, e_name, t_name from tbl_exam e
                 inner join tbl_teacher t
                 on e.t_no = t.t_no
+                order by e_no desc
                """;
 
         @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
@@ -70,7 +73,6 @@ public enum TeacherDAO {
             ExamVO exam = ExamVO.builder()
                     .e_no(rs.getInt("e_no"))
                     .e_name(rs.getString("e_name"))
-                    .t_name(rs.getString("t_name"))
                     .build();
             examList.add(exam);
         }//end while
@@ -78,6 +80,7 @@ public enum TeacherDAO {
         return examList;
     }
 
+    // 학생별 성적 정보
     public List<GradeVO> getGrade(Integer eno) throws Exception {
         String query = """
                 select
@@ -89,6 +92,7 @@ public enum TeacherDAO {
                 inner join tbl_question q on r.q_no = q.q_no
                 where q.e_no = ?
                 group by s.s_no, s.s_name
+                order by total_score desc
             """;
 
         @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
@@ -108,5 +112,37 @@ public enum TeacherDAO {
         }
 
         return gradeList;
+    }
+
+    public List<DetailVO> getDetail(int eno, int sno) throws Exception {
+
+        String query = """
+                select q.q_num, q.q_view, r.r_input, q.q_right
+                from tbl_student s
+                inner join tbl_exam e on s.del_flag = e.del_flag
+                inner join tbl_question q on e.e_no = q.e_no
+                inner join tbl_result r on s.s_no = r.s_no
+                where e.e_no = ? and s.s_no = ?
+                """;
+
+        @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
+        @Cleanup PreparedStatement ps = con.prepareStatement(query);
+        ps.setInt(1, eno);
+        ps.setInt(2, sno);
+        @Cleanup ResultSet rs = ps.executeQuery();
+
+        List<DetailVO> detailList = new ArrayList<>();
+
+        while (rs.next()) {
+            DetailVO detailVO = DetailVO.builder()
+                    .q_num(rs.getInt("q_num"))
+                    .q_view(rs.getString("q_view"))
+                    .r_input(rs.getInt("r_input"))
+                    .q_right(rs.getInt("q_right"))
+                    .build();
+            detailList.add(detailVO);
+        }
+
+        return detailList;
     }
 }

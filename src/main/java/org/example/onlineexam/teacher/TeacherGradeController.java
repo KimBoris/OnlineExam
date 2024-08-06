@@ -19,8 +19,7 @@ import java.util.List;
 @Log4j2
 public class TeacherGradeController extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.info("doGet grade page");
 
         // 파라미터 받아오기 - 시험 번호
@@ -48,6 +47,5 @@ public class TeacherGradeController extends HttpServlet {
         }//end catch
 
         req.getRequestDispatcher("/WEB-INF/teacher/grade.jsp").forward(req, resp);
-
     }
 }//end TeacherGradeController
