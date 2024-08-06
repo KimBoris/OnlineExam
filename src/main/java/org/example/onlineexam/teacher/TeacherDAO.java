@@ -34,7 +34,6 @@ public enum TeacherDAO {
             return Optional.empty();
         }
 
-
         TeacherVO vo = TeacherVO.builder()
                 .t_no(rs.getInt("t_no"))
                 .t_name(rs.getString("t_name"))
@@ -45,12 +44,6 @@ public enum TeacherDAO {
                 .del_flag(rs.getBoolean("del_flag"))
                 .build();
 
-        log.info("ID"+vo.getT_id());
-        log.info("PW"+vo.getT_pw());
-
-        log.info("Optional value = "+ Optional.of(vo));
         return Optional.of(vo);
-
-
     }
 }

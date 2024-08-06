@@ -14,7 +14,7 @@
 <h2>로그인 되었습니다..</h2>
 
 <%
-        System.out.println("요요요요 = "+(String) session.getAttribute("t_name"));
+
 %>
 
 </body>

@@ -18,7 +18,6 @@ public class TeacherMyPage extends HttpServlet {
        // req.getRequestDispatcher("/WEB-INF/teacher/mypage.jsp").forward(req, resp);
 
         HttpSession session = req.getSession(false);
-        log.info("부라보" +session.getAttribute("t_name"));
 
         if(session == null || session.getAttribute("t_name") == null) {
             resp.sendRedirect("/teacher/mypage");

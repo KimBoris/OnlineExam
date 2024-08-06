@@ -30,16 +30,14 @@ public class TeacherLoginController extends HttpServlet {
 
         HttpSession session = req.getSession();
         session.setMaxInactiveInterval(60*60);
-        log.info("세션 = "+session);
 
 
         //String aaa = (String) session.getAttribute("t_name");
-
         // Cookie = 이름 아이디
         // 세션 = tno
+
         try {
             Optional<TeacherVO> result = TeacherDAO.INSTANCE.get(t_id, t_pw);
-            log.info("Query Result = " + result);
 
 
             result.ifPresentOrElse(
@@ -47,7 +45,6 @@ public class TeacherLoginController extends HttpServlet {
                     {
                         TeacherVO teacher = result.get();
                         session.setAttribute("t_name", teacher.getT_name());
-                        log.info("세션값 = " + teacher.getT_name());
 
                         /*session.getAttribute("t_name");
                         log.info("aaaaaaaaaa" + (String) session.getAttribute("t_name"));
@@ -59,13 +56,11 @@ public class TeacherLoginController extends HttpServlet {
                         resp.addCookie(loginCookie);
 
                         try {
-                            log.info("쿠키줘봐" + req.getCookies());
-                            resp.sendRedirect("/teacher/mypage");
+                            resp.sendRedirect("/teacher/home");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                     }
-
                     ,
                     () -> {
                         try {
@@ -77,7 +72,5 @@ public class TeacherLoginController extends HttpServlet {
         } catch (Exception e) {
             throw new RuntimeException();
         }
-
-
     }
 }
