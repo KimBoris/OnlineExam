@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 @ToString
 public class TeacherVO {
     private Integer t_no;
+    private String t_name;
     private String t_id;
     private String t_pw;
     private Timestamp create_date;

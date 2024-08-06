@@ -17,40 +17,49 @@ public class TeacherLoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/teacher/login.jsp").forward(req, resp);
-
-
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String tid = req.getParameter("tid");
-        String tpw = req.getParameter("tpw");
-        log.info("------------------------");
-        log.info("tid = " + tid);
-        log.info("tpw = " + tpw);
-                            log.info("여기니?1");
+        String t_id = req.getParameter("t_id");
+        String t_pw = req.getParameter("t_pw");
+
+
+        String cookieStr = /*t_name+"%"+*/t_id;
+
 
         HttpSession session = req.getSession();
+
+
+
+        //String aaa = (String) session.getAttribute("t_name");
+
         // Cookie = 이름 아이디
         // 세션 = tno
         try {
-            Optional<TeacherVO> result = TeacherDAO.INSTANCE.get(tid, tpw);
-                            log.info("여기니?2");
+            Optional<TeacherVO> result = TeacherDAO.INSTANCE.get(t_id, t_pw);
+            log.info("Query Result = " + result);
 
-
-            log.info("RESULT = " + result);
 
             result.ifPresentOrElse(
                     TeacherVO ->
                     {
-                        Cookie loginCookie = new Cookie("tid", tid);
+                        TeacherVO teacher = result.get();
+                        session.setAttribute("t_name", teacher.getT_name());
+                        log.info("세션값 = " + teacher.getT_name());
+
+                        session.getAttribute("t_name");
+                        log.info("aaaaaaaaaa" + (String) session.getAttribute("t_name"));
+
+                        Cookie loginCookie = new Cookie("teacher", t_id);
                         loginCookie.setPath("/");
                         loginCookie.setMaxAge(60 * 60 * 24);
 
                         resp.addCookie(loginCookie);
+
                         try {
                             log.info("쿠키줘봐" + req.getCookies());
-                            resp.sendRedirect("/teacher/mypage");
+                            resp.sendRedirect("/teacher/login");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -59,7 +68,6 @@ public class TeacherLoginController extends HttpServlet {
                     ,
                     () -> {
                         try {
-                            log.info("여기니?");
                             resp.sendRedirect("/teacher/login");
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -70,20 +78,5 @@ public class TeacherLoginController extends HttpServlet {
         }
 
 
-   /*     HttpSession session = req.getSession();
-
-
-        try
-        {
-            Optional<TeacherVO> result = TeacherDAO.INSTANCE.get(tid, tpw);
-
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-
-    }
-*/
     }
 }
