@@ -10,7 +10,7 @@ public enum ConnectionUtil {
     ConnectionUtil(){
         HikariConfig config = new HikariConfig();
         config.setDriverClassName("org.mariadb.jdbc.Driver");
-        config.setJdbcUrl("jdbc:mariadb://maria.code-square.co.kr:13306/miniexam");
+        config.setJdbcUrl("jdbc:mariadb://112.185.50.204:13306/miniexam");
         config.setUsername("boris");
         config.setPassword("boris");
         config.addDataSourceProperty("cachePrepStmts", "true");
