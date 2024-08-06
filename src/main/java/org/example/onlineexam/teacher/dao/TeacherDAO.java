@@ -26,7 +26,7 @@ public enum TeacherDAO {
                                 and
                                     del_flag = false;
                 """;
-        log.info(query);
+        log.info("");
 
         @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
         @Cleanup PreparedStatement ps = con.prepareStatement(query);

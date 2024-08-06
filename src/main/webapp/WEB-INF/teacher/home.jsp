@@ -10,6 +10,7 @@
     <div>
         <a href="/teacher/grade?e_no=${exam.e_no}&e_name=${exam.e_name}">${exam.e_no} ${exam.e_name}</a>
         <span>작성자: ${exam.t_name}</span>
+        <div>hi</div>
     </div>
 </c:forEach>
 </body>
