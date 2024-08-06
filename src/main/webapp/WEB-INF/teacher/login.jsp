@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1> 반갑습니다. </h1>
-<form action="/teacher/mypage" method="post">
+<form action="/teacher/login" method="post">
     <div>
        아이디 <input name="t_id" type="text">
        비밀번호 <input name="t_pw" type="password">
@@ -20,8 +20,12 @@
     </div>
 </form>
 
-<% session.getAttribute("t_name");
-    System.out.println("세쇼니"+(String) session.getAttribute("t_name") ); %>
+
+<%--<%
+
+    System.out.println("야이놈들아"+session.getAttribute("t_name"));
+
+    %>--%>
 
 </body>
 </html>

@@ -29,7 +29,8 @@ public class TeacherLoginController extends HttpServlet {
 
 
         HttpSession session = req.getSession();
-
+        session.setMaxInactiveInterval(60*60);
+        log.info("세션 = "+session);
 
 
         //String aaa = (String) session.getAttribute("t_name");
@@ -48,9 +49,9 @@ public class TeacherLoginController extends HttpServlet {
                         session.setAttribute("t_name", teacher.getT_name());
                         log.info("세션값 = " + teacher.getT_name());
 
-                        session.getAttribute("t_name");
+                        /*session.getAttribute("t_name");
                         log.info("aaaaaaaaaa" + (String) session.getAttribute("t_name"));
-
+*/
                         Cookie loginCookie = new Cookie("teacher", t_id);
                         loginCookie.setPath("/");
                         loginCookie.setMaxAge(60 * 60 * 24);
@@ -59,7 +60,7 @@ public class TeacherLoginController extends HttpServlet {
 
                         try {
                             log.info("쿠키줘봐" + req.getCookies());
-                            resp.sendRedirect("/teacher/login");
+                            resp.sendRedirect("/teacher/mypage");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
