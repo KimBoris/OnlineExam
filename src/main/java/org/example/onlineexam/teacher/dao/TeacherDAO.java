@@ -2,7 +2,7 @@ package org.example.onlineexam.teacher.dao;
 
 import lombok.Cleanup;
 import lombok.extern.log4j.Log4j2;
-import org.example.onlineexam.common.ConnectionUtil;
+import org.example.onlineexam.common.ConncetionUtil;
 import org.example.onlineexam.teacher.vo.TeacherVO;
 
 import java.sql.Connection;
@@ -24,7 +24,7 @@ public enum TeacherDAO {
                 """;
         log.info(query);
 
-        @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
+        @Cleanup Connection con = ConncetionUtil.INSTANCE.getDs().getConnection();
         @Cleanup PreparedStatement ps = con.prepareStatement(query);
         ps.setString(1, id );
         ps.setString(2, pw );
