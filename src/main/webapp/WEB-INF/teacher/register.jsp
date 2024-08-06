@@ -13,11 +13,12 @@
 <body>
 
 
-<form action="/teacher/register" method="post">
+<form action="/teacher/register" method="post" enctype="multipart/form-data">
     <label>Exam Name</label>
     <input name="e_name" type="text">
     <label>Excel</label>
     <input name="q_file" type="file">
+    <button type="submit">SUBMIT</button>
 </form>
 
 
