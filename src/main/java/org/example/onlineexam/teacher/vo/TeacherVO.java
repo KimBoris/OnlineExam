@@ -1,4 +1,4 @@
-package org.example.onlineexam.teacher;
+package org.example.onlineexam.teacher.vo;
 
 
 import lombok.*;

@@ -1,8 +1,9 @@
-package org.example.onlineexam.teacher;
+package org.example.onlineexam.teacher.dao;
 
 import lombok.Cleanup;
 import lombok.extern.log4j.Log4j2;
 import org.example.onlineexam.common.ConnectionUtil;
+import org.example.onlineexam.teacher.vo.TeacherVO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

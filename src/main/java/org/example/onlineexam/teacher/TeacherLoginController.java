@@ -5,6 +5,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import lombok.extern.log4j.Log4j2;
+import org.example.onlineexam.teacher.dao.TeacherDAO;
+import org.example.onlineexam.teacher.vo.TeacherVO;
 
 import java.io.IOException;
 import java.util.Optional;
