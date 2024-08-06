@@ -51,6 +51,8 @@ public enum QuestionDAO {
         rs.next();
 
         Integer e_no = rs.getInt("e_no");
+        rs.close();
+        ps.close();
 
         String sql1 = """
                 INSERT INTO
@@ -71,6 +73,7 @@ public enum QuestionDAO {
         ps = con.prepareStatement(sql1);
 
         for (QuestionVO vo : voList){
+            log.info(vo.toString());
             ps.setInt(1, e_no);
             ps.setInt(2, vo.getQ_num());
             ps.setString(3, vo.getQ_view());
@@ -82,6 +85,7 @@ public enum QuestionDAO {
             ps.setInt(9, vo.getQ_right());
             ps.executeUpdate();
         }
+        ps.close();
 
         return 0;
     }

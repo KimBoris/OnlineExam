@@ -14,7 +14,7 @@ public class QuestionVO {
 
     private Integer e_no;
 
-    private int q_num;
+    private Integer q_num;
 
     private String q_view;
 
@@ -24,6 +24,6 @@ public class QuestionVO {
     private String q_answer4;
     private String q_answer5;
 
-    private int q_right;
+    private Integer q_right;
 
 }
