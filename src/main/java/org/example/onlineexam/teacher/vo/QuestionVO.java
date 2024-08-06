@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @ToString
-public class ExamVO {
+public class QuestionVO {
 
     private Integer q_no;
 

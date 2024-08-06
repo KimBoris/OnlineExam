@@ -18,6 +18,7 @@
     <input name="e_name" type="text">
     <label>Excel</label>
     <input name="q_file" type="file">
+    <button type="submit">SUBMIT</button>
 </form>
 
 
