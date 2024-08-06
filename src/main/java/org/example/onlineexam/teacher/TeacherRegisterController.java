@@ -3,10 +3,7 @@ package org.example.onlineexam.teacher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
+import jakarta.servlet.http.*;
 import lombok.Cleanup;
 import lombok.extern.log4j.Log4j2;
 import org.example.onlineexam.common.ExcelReader;
@@ -46,7 +43,10 @@ public class TeacherRegisterController extends HttpServlet {
 
             log.info(quizVOList);
 
-            QuestionDAO.INSTANCE.insertExam(e_name, quizVOList);
+            HttpSession session = req.getSession();
+            Integer t_no = (Integer) session.getAttribute("t_no");
+
+            QuestionDAO.INSTANCE.insertExam(e_name, t_no ,quizVOList);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
