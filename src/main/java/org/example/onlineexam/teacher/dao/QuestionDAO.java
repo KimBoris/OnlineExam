@@ -19,7 +19,7 @@ public enum QuestionDAO {
 
     QuestionDAO(){}
 
-    public int insertExam(String e_name, List<QuestionVO> voList) throws SQLException {
+    public void insertExam(String e_name, List<QuestionVO> voList) throws SQLException {
 
         // Exam 테이블 INSERT SQL문
         String sql0 = """
@@ -32,7 +32,7 @@ public enum QuestionDAO {
         @Cleanup Connection con = ConncetionUtil.INSTANCE.getDs().getConnection();
         @Cleanup PreparedStatement ps = con.prepareStatement(sql0);
 
-        Integer t_no = 2;
+        Integer t_no = 2; // 세션에서 받아올값.
         ps.setInt(1, t_no);
         ps.setString(2, e_name);
 
@@ -57,15 +57,16 @@ public enum QuestionDAO {
         String sql1 = """
                 INSERT INTO
                     tbl_question(
-                    e_no,
-                    q_num,
-                    q_view,
-                    q_answer1,
-                    q_answer2,
-                    q_answer3,
-                    q_answer4,
-                    q_answer5,
-                    q_right
+                        e_no,
+                        q_num,
+                        q_view,
+                        q_answer1,
+                        q_answer2,
+                        q_answer3,
+                        q_answer4,
+                        q_answer5,
+                        q_right
+                    )
                 VALUES
                     (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
@@ -87,7 +88,6 @@ public enum QuestionDAO {
         }
         ps.close();
 
-        return 0;
     }
 
 

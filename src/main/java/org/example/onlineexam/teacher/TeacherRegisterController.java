@@ -46,11 +46,13 @@ public class TeacherRegisterController extends HttpServlet {
 
             log.info(quizVOList);
 
-            Integer result = QuestionDAO.INSTANCE.insertExam(e_name, quizVOList);
+            QuestionDAO.INSTANCE.insertExam(e_name, quizVOList);
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        resp.sendRedirect("/teacher/home");
 
     }
 }
