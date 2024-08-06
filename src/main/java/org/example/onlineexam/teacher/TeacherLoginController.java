@@ -46,6 +46,7 @@ public class TeacherLoginController extends HttpServlet {
                     TeacherVO ->
                     {
                         TeacherVO teacher = result.get();
+                        session.setAttribute("t_no", teacher.getT_no());
                         session.setAttribute("t_name", teacher.getT_name());
 
                         /*session.getAttribute("t_name");
