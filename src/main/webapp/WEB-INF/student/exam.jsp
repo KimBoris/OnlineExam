@@ -42,7 +42,7 @@
     }
 
     .answerSheet {
-        position: fixed;;
+        position: fixed;
         top: 0;
         right: 0;
         width: 40vw;
@@ -87,32 +87,22 @@
                 </form>
             </div>
         </div>
-
-        <script>
-            function move(quizNum) {
-                console.log(quizNum);
-
-                const quizDiv = document.querySelector("#quiz" + quizNum);
-
-                console.log(quizDiv);
-
-                quizDiv.scrollIntoView({behavior: "smooth"});
-            }
-        </script>
-
-        <div class="answerSheet">
-            <iframe name="exam_test" src="/exam/answerSheet"></iframe>
-        </div>
-
-
-        </div>
-        <div>
-
-        </div>
-        </div>
-
     </c:forEach>
-
 </ul>
+
+<div class="answerSheet">
+    <iframe name="exam_test" src="/student/answerSheet"></iframe>
+</div>
+<script>
+    function move(quizNum) {
+        console.log(quizNum);
+
+        const quizDiv = document.querySelector("#quiz" + quizNum);
+
+        console.log(quizDiv);
+
+        quizDiv.scrollIntoView({behavior: "smooth"});
+    }
+</script>
 </body>
 </html>

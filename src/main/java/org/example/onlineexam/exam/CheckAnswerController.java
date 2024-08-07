@@ -31,7 +31,7 @@ public class CheckAnswerController extends HttpServlet {
 
         int q_no = StringUtil.getInt(q_noStr,-1);
 
-        answers[q_no-1] = q_no+":"+answer;
+        answers[q_no-1] = q_no + ":" + answer;
 
         String cookieValue = String.join("&",answers);
 
@@ -41,6 +41,7 @@ public class CheckAnswerController extends HttpServlet {
 
         resp.addCookie(answerCookies2);
 
-        resp.sendRedirect("/exam/answerSheet");
+//        req.getRequestDispatcher("/WEB-INF/studet/answer.jsp").forward(req, resp);
+        resp.sendRedirect("/student/answerSheet");
     }
 }

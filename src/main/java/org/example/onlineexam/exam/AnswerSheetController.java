@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @Log4j2
-@WebServlet(value="/exam/answerSheet")
+@WebServlet(value="/student/answerSheet")
 public class AnswerSheetController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,7 +22,7 @@ public class AnswerSheetController extends HttpServlet {
         log.info("ANswerMap = "+ answerMap);
         req.setAttribute("answerMap", answerMap);
 
-        req.getRequestDispatcher("/WEB-INF/exam/answerSheet.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/student/answerSheet.jsp").forward(req, resp);
 
     }
 }

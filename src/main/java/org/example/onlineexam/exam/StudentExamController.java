@@ -39,7 +39,7 @@ public class StudentExamController extends HttpServlet {
 
             resp.addCookie(answerCookie);
 
-            req.getRequestDispatcher("/WEB-INF/exam/exam.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/student/exam.jsp").forward(req, resp);
 
         } catch (Exception e) {
             e.printStackTrace();
