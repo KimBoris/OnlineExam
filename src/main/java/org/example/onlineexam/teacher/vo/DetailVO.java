@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 @ToString
 public class DetailVO {
 
+    private Integer q_no;
     private int q_num;
     private String q_view;
     private int r_input;

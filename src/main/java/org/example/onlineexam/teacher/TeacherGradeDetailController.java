@@ -20,24 +20,33 @@ public class TeacherGradeDetailController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String enoString = req.getParameter("e_no");
-        Integer eno = StringUtil.getInt(enoString, 1);
+        Integer e_no = StringUtil.getInt(enoString, 1);
 
         String snoString = req.getParameter("s_no");
-        Integer sno = StringUtil.getInt(snoString, 1);
+        Integer s_no = StringUtil.getInt(snoString, 1);
 
-        String sname = req.getParameter("s_name");
-
-        String scoreString = req.getParameter("score");
-        Integer score = StringUtil.getInt(scoreString, 1);
+        String s_name = req.getParameter("s_name");
 
         try {
-            List<DetailVO> detailList = TeacherDAO.INSTANCE.getDetail(eno, sno);
+            List<DetailVO> detailList = TeacherDAO.INSTANCE.getDetail(e_no, s_no);
+
+            // 학생 점수 계산
+            int totalScore = 0;
+
+            for (DetailVO detail : detailList) {
+                if (detail.getR_input() == detail.getQ_right()) {
+                    totalScore++;
+                }
+            }//end for
+
             req.setAttribute("detailList", detailList);
-            req.setAttribute("sname", sname);
-            req.setAttribute("score", score);
+            req.setAttribute("s_name", s_name);
+            req.setAttribute("totalScore", totalScore);
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
+        }//end catch
+
+        req.getRequestDispatcher("/WEB-INF/teacher/grade_detail.jsp").forward(req, resp);
 
     }
 }

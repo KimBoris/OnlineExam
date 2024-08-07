@@ -1,6 +1,7 @@
 package org.example.onlineexam.teacher.dao;
 
 import lombok.Cleanup;
+import lombok.ToString;
 import lombok.extern.log4j.Log4j2;
 import org.example.onlineexam.common.ConnectionUtil;
 import org.example.onlineexam.teacher.vo.DetailVO;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Log4j2
+@ToString
 public enum TeacherDAO {
     INSTANCE;
 
@@ -81,23 +83,22 @@ public enum TeacherDAO {
     }
 
     // 학생별 성적 정보
-    public List<GradeVO> getGrade(Integer eno) throws Exception {
+    public List<GradeVO> getGrade(Integer e_no) throws Exception {
         String query = """
-                select
-                    s.s_no,
-                    s.s_name,
-                    SUM(CASE WHEN q.q_right = r.r_input THEN 1 ELSE 0 END) AS total_score
-                from tbl_student s
-                inner join tbl_result r on s.s_no = r.s_no
-                inner join tbl_question q on r.q_no = q.q_no
-                where q.e_no = ?
-                group by s.s_no, s.s_name
-                order by total_score desc
+                SELECT
+                    s.s_no,s.s_name
+                FROM
+                    tbl_question q
+                        INNER JOIN tbl_result r ON q.q_no = r.q_no
+                        INNER JOIN tbl_student s ON r.s_no = s.s_no
+                WHERE
+                    e_no = ?
+                GROUP BY r.s_no
             """;
 
         @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
         @Cleanup PreparedStatement ps = con.prepareStatement(query);
-        ps.setInt(1, eno);
+        ps.setInt(1, e_no);
         @Cleanup ResultSet rs = ps.executeQuery();
 
         List<GradeVO> gradeList = new ArrayList<>();
@@ -106,7 +107,6 @@ public enum TeacherDAO {
             GradeVO grade = GradeVO.builder()
                     .s_no(rs.getInt("s_no"))
                     .s_name(rs.getString("s_name"))
-                    .totalScore(rs.getInt("total_score"))
                     .build();
             gradeList.add(grade);
         }
@@ -117,12 +117,13 @@ public enum TeacherDAO {
     public List<DetailVO> getDetail(int eno, int sno) throws Exception {
 
         String query = """
-                select q.q_num, q.q_view, r.r_input, q.q_right
-                from tbl_student s
-                inner join tbl_exam e on s.del_flag = e.del_flag
-                inner join tbl_question q on e.e_no = q.e_no
-                inner join tbl_result r on s.s_no = r.s_no
-                where e.e_no = ? and s.s_no = ?
+                SELECT
+                    q.q_no, q.q_num, q.q_view, r.r_input, q.q_right
+                FROM
+                    tbl_question q
+                    INNER JOIN tbl_result r ON q.q_no = r.q_no
+                WHERE
+                    e_no = ? AND s_no = ?
                 """;
 
         @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
@@ -135,6 +136,7 @@ public enum TeacherDAO {
 
         while (rs.next()) {
             DetailVO detailVO = DetailVO.builder()
+                    .q_no(rs.getInt("q_no"))
                     .q_num(rs.getInt("q_num"))
                     .q_view(rs.getString("q_view"))
                     .r_input(rs.getInt("r_input"))
