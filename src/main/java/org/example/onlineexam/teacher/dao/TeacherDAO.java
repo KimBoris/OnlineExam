@@ -23,12 +23,12 @@ public enum TeacherDAO {
 
     public Optional<TeacherVO> get(String id, String pw) throws Exception {
         String query = """
-select * from tbl_teacher
-where t_id = ?
-and t_pw = ?
-and
-del_flag = false;
-""";
+            select * from tbl_teacher
+            where t_id = ?
+            and t_pw = ?
+            and
+            del_flag = false;
+            """;
         log.info("");
 
         @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
@@ -117,14 +117,14 @@ GROUP BY r.s_no
     public List<DetailVO> getDetail(int eno, int sno) throws Exception {
 
         String query = """
-SELECT
-q.q_no, q.q_num, q.q_view, r.r_input, q.q_right
-FROM
-tbl_question q
-INNER JOIN tbl_result r ON q.q_no = r.q_no
-WHERE
-e_no = ? AND s_no = ?
-""";
+            SELECT
+            q.q_no, q.q_num, q.q_view, r.r_input, q.q_right
+            FROM
+            tbl_question q
+            INNER JOIN tbl_result r ON q.q_no = r.q_no
+            WHERE
+            e_no = ? AND s_no = ?
+        """;
 
         @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
         @Cleanup PreparedStatement ps = con.prepareStatement(query);

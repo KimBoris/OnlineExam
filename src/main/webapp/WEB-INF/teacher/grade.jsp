@@ -10,7 +10,7 @@
     <c:forEach items="${gradeList}" var="grade">
         <li>
             <span>${grade.s_name}</span>
-            <form action="/teacher/gradedetail" method="post">
+            <form action="/teacher/gradedetail" method="get">
                 <input type="hidden" name="e_no" value="${e_no}">
                 <input type="hidden" name="e_name" value="${e_name}">
                 <input type="hidden" name="s_no" value="${grade.s_no}">
