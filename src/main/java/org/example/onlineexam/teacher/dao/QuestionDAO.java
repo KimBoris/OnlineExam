@@ -3,7 +3,7 @@ package org.example.onlineexam.teacher.dao;
 import lombok.Cleanup;
 import lombok.ToString;
 import lombok.extern.log4j.Log4j2;
-import org.example.onlineexam.common.ConnectionUtil;
+import org.example.onlineexam.common.ConncetionUtil;
 import org.example.onlineexam.teacher.vo.QuestionVO;
 
 import java.sql.Connection;
@@ -29,7 +29,7 @@ public enum QuestionDAO {
                 VALUES (?, ?)
                 """;
 
-        @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
+        @Cleanup Connection con = ConncetionUtil.INSTANCE.getDs().getConnection();
         @Cleanup PreparedStatement ps = con.prepareStatement(sql0);
 
         Integer t_no = 2; // 세션에서 받아올값.
