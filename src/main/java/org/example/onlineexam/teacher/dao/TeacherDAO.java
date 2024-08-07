@@ -26,6 +26,8 @@ public enum TeacherDAO {
                                 and
                                     del_flag = false;
                 """;
+
+
         log.info(query);
 
         @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
