@@ -59,11 +59,11 @@ del_flag = false;
     public List<ExamVO> getExam() throws Exception {
 
         String query = """
-select e_no, e_name, t_name from tbl_exam e
-inner join tbl_teacher t
-on e.t_no = t.t_no
-order by e_no desc
-""";
+            select e_no, e_name, t_name from tbl_exam e
+            inner join tbl_teacher t
+            on e.t_no = t.t_no
+            order by e_no desc
+        """;
 
         @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
         @Cleanup PreparedStatement ps = con.prepareStatement(query);
