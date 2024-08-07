@@ -20,6 +20,7 @@
     <input name="q_file" type="file">
     <button type="submit">SUBMIT</button>
 </form>
+<a href="/teacher/home">HOME</a>
 
 
 </body>

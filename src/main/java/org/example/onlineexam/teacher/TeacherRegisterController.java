@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import lombok.Cleanup;
+import lombok.ToString;
 import lombok.extern.log4j.Log4j2;
 import org.example.onlineexam.common.ExcelReader;
 import org.example.onlineexam.teacher.dao.QuestionDAO;
@@ -19,6 +20,7 @@ import java.util.List;
         maxFileSize=1024*1024*50,      	// 50 MB
         maxRequestSize=1024*1024*100)   	// 100 MB
 @Log4j2
+@ToString
 public class TeacherRegisterController extends HttpServlet {
 
     @Override
@@ -44,7 +46,8 @@ public class TeacherRegisterController extends HttpServlet {
             log.info(quizVOList);
 
             HttpSession session = req.getSession();
-            Integer t_no = (Integer) session.getAttribute("t_no");
+            int t_no = (int) session.getAttribute("t_no");
+            log.info("t_NO :" + t_no);
 
             QuestionDAO.INSTANCE.insertExam(e_name, t_no ,quizVOList);
 

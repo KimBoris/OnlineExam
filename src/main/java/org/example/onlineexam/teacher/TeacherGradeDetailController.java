@@ -21,6 +21,7 @@ public class TeacherGradeDetailController extends HttpServlet {
 
         String enoString = req.getParameter("e_no");
         Integer e_no = StringUtil.getInt(enoString, 1);
+        String e_name = req.getParameter("e_name");
 
         String snoString = req.getParameter("s_no");
         Integer s_no = StringUtil.getInt(snoString, 1);
@@ -38,6 +39,9 @@ public class TeacherGradeDetailController extends HttpServlet {
                     totalScore++;
                 }
             }//end for
+
+            req.setAttribute("e_no", e_no);
+            req.setAttribute("e_name", e_name);
 
             req.setAttribute("detailList", detailList);
             req.setAttribute("s_name", s_name);

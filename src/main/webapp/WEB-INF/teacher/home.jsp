@@ -19,6 +19,7 @@
             <button type="submit">SUBMIT</button>
         </form>
 </c:forEach>
+        <a href="/teacher/register">시험 등록하기</a>
     </div>
 </body>
 </html>
