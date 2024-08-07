@@ -19,12 +19,13 @@
 <p>${answerMap}</p>
 
 <ul>
+    <% int count = 1; %>
     <c:forEach items="${answerMap}" var ="answer">
-
         <li>
-            <a onclick="move"(${answer['key']})> ${answer['key']}</a>
-            <input type="text" readonly value="${answer['value']}"/>
+            <a onclick="move"(${answer['key']})> <%=count%>번</a>
+            <span>${answer['value']}</span>
         </li>
+        <% count += 1; %>
     </c:forEach>
 </ul>
 

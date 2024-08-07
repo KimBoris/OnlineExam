@@ -43,7 +43,7 @@ public enum QuestionDAO {
         {
             QuestionVO questionVO = QuestionVO.builder()
                     .q_no(rs.getInt("q_no"))
-                    .q_num(rs.getInt("q_no"))
+                    .q_num(rs.getInt("q_num"))
                     .q_view(rs.getString("q_view"))
                     .q_answer1(rs.getString("q_answer1"))
                     .q_answer2(rs.getString("q_answer2"))

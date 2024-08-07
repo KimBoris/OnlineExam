@@ -17,10 +17,8 @@ public class CheckAnswerController extends HttpServlet {
 
         String e_no = req.getParameter("e_no");
         String q_noStr = req.getParameter("q_no");
+        String q_numStr = req.getParameter("q_num");
         String answer = req.getParameter("answer");
-
-        HttpSession session = req.getSession();
-        Integer s_no = (Integer) session.getAttribute("s_no");
 
         Cookie answerCookie = Arrays.stream(req.getCookies())
                 .filter(cookie -> cookie.getName().equals("answer"))
@@ -29,9 +27,10 @@ public class CheckAnswerController extends HttpServlet {
 
         String[] answers = answerCookie.getValue().split("&");
 
+        int q_num = StringUtil.getInt(q_numStr,-1);
         int q_no = StringUtil.getInt(q_noStr,-1);
 
-        answers[q_no-1] = q_no + ":" + answer;
+        answers[q_num-1] = q_no + ":" + answer;
 
         String cookieValue = String.join("&",answers);
 
@@ -41,7 +40,6 @@ public class CheckAnswerController extends HttpServlet {
 
         resp.addCookie(answerCookies2);
 
-//        req.getRequestDispatcher("/WEB-INF/studet/answer.jsp").forward(req, resp);
         resp.sendRedirect("/student/answerSheet");
     }
 }
