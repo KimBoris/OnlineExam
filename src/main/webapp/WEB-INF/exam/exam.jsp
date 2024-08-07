@@ -9,6 +9,7 @@
 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -56,24 +57,32 @@
         height: 100vh;
     }
 </style>
+<h1> e_no : ${e_no}</h1>
+<ul class="navigator">
+    <c:forEach items="${questionVOList}" var="question">
+        <li>
+            <a onclick="move(${question.q_no})"> ${question.q_no}번 </a>
+        </li>
+    </c:forEach>
+</ul>
+
 <ul class="quizList">
-    <c:forEach items="${quizList}" var="quiz">
-        <div class="quizDiv" id="quiz${quiz.qno}">
+    <c:forEach items="${questionVOList}" var="question">
+        <div class="quizDiv" id="quiz${question.q_no}">
             <div>
-                <h2>${quiz.qno}번 문제</h2>
-                <p>${quiz.question}</p>
+                <h2>${question.q_num}번 문제</h2>
+                <p>${question.q_view}</p>
             </div>
             <div>
-                <form method="post" action="/check/answer?count=${quizList.size()}" target="zero">
+                <form method="post" action="/check/answer?count=${questionVOList.size()}" target="zero">
 
-                    <input type="hidden" name="examno" value="${examNum}">
-                    <input type="hidden" name="qno" value="${quiz.qno}">
-
-                    <input type="radio" name="answer" value="1"> ${quiz.op1} <br>
-                    <input type="radio" name="answer" value="1"> ${quiz.op1} <br>
-                    <input type="radio" name="answer" value="1"> ${quiz.op1} <br>
-                    <input type="radio" name="answer" value="1"> ${quiz.op1} <br>
-                    <input type="radio" name="answer" value="1"> ${quiz.op1} <br>
+                    <input type="hidden" name="e_no" value="${e_no}">
+                    <input type="hidden" name="q_no" value="${question.q_no}">
+                    <input type="radio" name="answer" value="1"> ${question.q_answer1} <br>
+                    <input type="radio" name="answer" value="1"> ${question.q_answer2} <br>
+                    <input type="radio" name="answer" value="1"> ${question.q_answer3} <br>
+                    <input type="radio" name="answer" value="1"> ${question.q_answer4} <br>
+                    <input type="radio" name="answer" value="1"> ${question.q_answer5} <br>
                     <input type="submit" value="제출">
                 </form>
             </div>
@@ -92,9 +101,11 @@
         </script>
 
 
+        <h1>${questionVOList.size()}</h1>
         <div class="answerSheet">
-            <iframe name="zero" src="/exam/answerSheet?count=${quizList.size()}"></iframe>
+            <iframe name="zero" src="/exam/answerSheet?count=${questionVOList.size()}"></iframe>
         </div>
+
 
         </div>
         <div>

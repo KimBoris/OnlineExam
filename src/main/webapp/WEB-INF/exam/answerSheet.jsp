@@ -23,7 +23,7 @@
 
         <li>
             <a onclick="move"(${answer['key']})> ${answer['key']}</a>
-            <input type="text" readonly value="${answer['value']}"> </input>
+            <input type="text" readonly value="${answer['value']}"/>
         </li>
     </c:forEach>
 </ul>

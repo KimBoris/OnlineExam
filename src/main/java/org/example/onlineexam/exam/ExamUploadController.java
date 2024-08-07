@@ -1,4 +1,4 @@
-package org.example.onlineexam;
+package org.example.onlineexam.exam;
 
 
 import jakarta.servlet.ServletException;

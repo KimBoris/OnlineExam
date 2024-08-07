@@ -18,16 +18,6 @@ public class TeacherLoginController extends HttpServlet {
 
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-
-        session.setAttribute("t_id", "t1");
-
-        session.setAttribute("examNum", 30);
-
-        resp.sendRedirect("/exam/view");
-    }
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/teacher/login.jsp").forward(req, resp);
     }

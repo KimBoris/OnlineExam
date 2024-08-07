@@ -10,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Log4j2
 @ToString
@@ -18,6 +20,46 @@ public enum QuestionDAO {
     INSTANCE;
 
     QuestionDAO(){}
+
+    public List<QuestionVO> get(Integer e_no) throws Exception
+    {
+        String query = """
+                SELECT
+                    q_no,q_num,q_view,q_answer1,q_answer2,q_answer3,q_answer4,q_answer5,q_right
+                FROM
+                    tbl_question
+                WHERE e_no = ?
+                """;
+
+
+        @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
+        @Cleanup PreparedStatement ps = con.prepareStatement(query);
+        ps.setInt(1,e_no);
+        @Cleanup ResultSet rs = ps.executeQuery();
+
+        List<QuestionVO> questionVOList = new ArrayList<>();
+
+        while(rs.next())
+        {
+            QuestionVO questionVO = QuestionVO.builder()
+                    .q_no(rs.getInt("q_no"))
+                    .q_num(rs.getInt("q_no"))
+                    .q_view(rs.getString("q_view"))
+                    .q_answer1(rs.getString("q_answer1"))
+                    .q_answer2(rs.getString("q_answer2"))
+                    .q_answer3(rs.getString("q_answer3"))
+                    .q_answer4(rs.getString("q_answer4"))
+                    .q_answer5(rs.getString("q_answer5"))
+                    .q_right(rs.getInt("q_right"))
+                    .build();
+
+
+            questionVOList.add(questionVO);
+        }
+        return questionVOList;
+    }
+
+
 
     public void insertExam(String e_name,int t_no, List<QuestionVO> voList) throws SQLException {
 

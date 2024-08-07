@@ -1,4 +1,4 @@
-package org.example.onlineexam;
+package org.example.onlineexam.exam;
 
 
 import jakarta.servlet.ServletException;
@@ -19,6 +19,7 @@ public class AnswerSheetController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Map<Integer,String> answerMap = CookieUtil.parseStr(req);
 
+        log.info("ANswerMap = "+ answerMap);
         req.setAttribute("answerMap", answerMap);
 
         req.getRequestDispatcher("/WEB-INF/exam/answerSheet.jsp").forward(req, resp);

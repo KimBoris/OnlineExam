@@ -1,9 +1,10 @@
-package org.example.onlineexam;
+package org.example.onlineexam.exam;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import lombok.extern.log4j.Log4j2;
+import org.example.onlineexam.common.StringUtil;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,12 +15,12 @@ public class CheckAnswerController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String examno = req.getParameter("examno");
-        String qnoStr = req.getParameter("qno");
+        String e_no = req.getParameter("e_no");
+        String q_noStr = req.getParameter("q_no");
         String answer = req.getParameter("answer");
 
         HttpSession session = req.getSession();
-        String uid = (String)session.getAttribute("uid");
+        Integer s_no = (Integer) session.getAttribute("s_no");
 
         Cookie answerCookie = Arrays.stream(req.getCookies())
                 .filter(cookie -> cookie.getName().equals("answer"))
@@ -28,9 +29,9 @@ public class CheckAnswerController extends HttpServlet {
 
         String[] answers = answerCookie.getValue().split("&");
 
-        int qno = Integer.parseInt(qnoStr);
+        int q_no = StringUtil.getInt(q_noStr,-1);
 
-        answers[qno-1] = qno+":"+answer;
+        answers[q_no-1] = q_no+":"+answer;
 
         String cookieValue = String.join("&",answers);
 

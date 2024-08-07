@@ -4,7 +4,6 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.example.onlineexam.QuizVO;
 import org.example.onlineexam.teacher.vo.QuestionVO;
 
 import java.io.InputStream;
