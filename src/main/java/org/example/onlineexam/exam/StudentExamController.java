@@ -24,7 +24,7 @@ public class StudentExamController extends HttpServlet {
         String examNum = req.getParameter("e_no");
         Integer e_no = StringUtil.getInt(examNum, 1);
 
-        log.info("겟겟겟겟겟");
+        log.info("GET");
         try {
             List<QuestionVO> questionVOList = QuestionDAO.INSTANCE.get(e_no);
             req.setAttribute("questionVOList", questionVOList);

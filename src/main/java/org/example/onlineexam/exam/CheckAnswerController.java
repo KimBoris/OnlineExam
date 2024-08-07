@@ -41,6 +41,6 @@ public class CheckAnswerController extends HttpServlet {
 
         resp.addCookie(answerCookies2);
 
-        resp.sendRedirect("/exam/answerSheet?count="+req.getParameter("count"));
+        resp.sendRedirect("/exam/answerSheet");
     }
 }

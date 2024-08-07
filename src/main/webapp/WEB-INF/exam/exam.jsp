@@ -74,15 +74,15 @@
                 <p>${question.q_view}</p>
             </div>
             <div>
-                <form method="post" action="/check/answer?count=${questionVOList.size()}" target="zero">
+                <form method="post" action="/check/answer" target="exam_test">
 
                     <input type="hidden" name="e_no" value="${e_no}">
                     <input type="hidden" name="q_no" value="${question.q_no}">
                     <input type="radio" name="answer" value="1"> ${question.q_answer1} <br>
-                    <input type="radio" name="answer" value="1"> ${question.q_answer2} <br>
-                    <input type="radio" name="answer" value="1"> ${question.q_answer3} <br>
-                    <input type="radio" name="answer" value="1"> ${question.q_answer4} <br>
-                    <input type="radio" name="answer" value="1"> ${question.q_answer5} <br>
+                    <input type="radio" name="answer" value="2"> ${question.q_answer2} <br>
+                    <input type="radio" name="answer" value="3"> ${question.q_answer3} <br>
+                    <input type="radio" name="answer" value="4"> ${question.q_answer4} <br>
+                    <input type="radio" name="answer" value="5"> ${question.q_answer5} <br>
                     <input type="submit" value="제출">
                 </form>
             </div>
@@ -100,10 +100,8 @@
             }
         </script>
 
-
-        <h1>${questionVOList.size()}</h1>
         <div class="answerSheet">
-            <iframe name="zero" src="/exam/answerSheet?count=${questionVOList.size()}"></iframe>
+            <iframe name="exam_test" src="/exam/answerSheet"></iframe>
         </div>
 
 
