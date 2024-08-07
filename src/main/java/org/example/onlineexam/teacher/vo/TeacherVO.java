@@ -1,6 +1,5 @@
 package org.example.onlineexam.teacher.vo;
 
-
 import lombok.*;
 
 import java.sql.Timestamp;
