@@ -1,4 +1,4 @@
-package org.example.onlineexam.teacher.filter;
+package org.example.onlineexam.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
