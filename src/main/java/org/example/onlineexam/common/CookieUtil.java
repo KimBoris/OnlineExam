@@ -31,7 +31,7 @@ public class CookieUtil {
                 .findFirst()
                 .map(cookie -> cookie.getValue())
                 .map(value -> Arrays.stream(value.split("&"))
-                        .map(str-> str.split(";"))
+                        .map(str-> str.split(":"))
                         .collect(java.util.stream.Collectors.toMap(str -> Integer.parseInt(str[0]),str->str[1])))
                 .orElse(null);
 
