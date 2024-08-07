@@ -60,7 +60,6 @@ public class TeacherLoginController extends HttpServlet {
                         TeacherVO teacher = result.get();
                         session.setAttribute("t_no", teacher.getT_no());
                         session.setAttribute("t_name", teacher.getT_name());
-                        session.setAttribute("t_no", teacher.getT_no());
 
                         /*session.getAttribute("t_name");
                         log.info("aaaaaaaaaa" + (String) session.getAttribute("t_name"));
