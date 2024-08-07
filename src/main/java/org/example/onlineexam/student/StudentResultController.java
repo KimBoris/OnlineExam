@@ -25,8 +25,7 @@ public class StudentResultController extends HttpServlet {
         Integer e_no = StringUtil.getInt(enoString, 1);
 
         HttpSession session = req.getSession();
-//        Integer s_no = (Integer) session.getAttribute("s_no");
-        Integer s_no = 1;
+        Integer s_no = (Integer) session.getAttribute("s_no");
 
         try {
             List<DetailVO> detailList = TeacherDAO.INSTANCE.getDetail(e_no, s_no);

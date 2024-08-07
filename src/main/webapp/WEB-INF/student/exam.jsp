@@ -91,6 +91,7 @@
     </c:forEach>
 </ul>
 <form action="/student/exam" method="post">
+    <input type="hidden" name="e_no" value="${e_no}">
     <button type="submit">최종 제출</button>
 </form>
 

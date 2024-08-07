@@ -15,8 +15,7 @@
         <form action="/teacher/grade" method="post">
             <input type="hidden" name="e_no" value="${exam.e_no}">
             <input type="hidden" name="e_name" value="${exam.e_name}">
-            <input type="submit" value="SUBMIT">
-            <button type="submit">SUBMIT</button>
+            <button type="submit">학생보기</button>
         </form>
 </c:forEach>
         <a href="/teacher/register">시험 등록하기</a>

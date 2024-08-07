@@ -21,8 +21,7 @@ public enum QuestionDAO {
 
     QuestionDAO(){}
 
-    public List<QuestionVO> get(Integer e_no) throws Exception
-    {
+    public List<QuestionVO> get(Integer e_no) throws Exception {
         String query = """
                 SELECT
                     q_no,q_num,q_view,q_answer1,q_answer2,q_answer3,q_answer4,q_answer5,q_right
@@ -59,8 +58,6 @@ public enum QuestionDAO {
         return questionVOList;
     }
 
-
-
     public void insertExam(String e_name,int t_no, List<QuestionVO> voList) throws SQLException {
 
         // Exam 테이블 INSERT SQL문
@@ -79,7 +76,7 @@ public enum QuestionDAO {
 
         int exam_check = ps.executeUpdate();
 
-        // 예외처리 - 정상적으로 들어가지 않았을경우
+         // 예외처리 - 정상적으로 들어가지 않았을경우
         if(exam_check != 1){}
 
         ps.close();

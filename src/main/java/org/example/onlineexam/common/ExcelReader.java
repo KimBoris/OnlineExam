@@ -43,9 +43,9 @@ public class ExcelReader {
 
             int idx = 0;
 
-            /*수정해야하낟.*/
+            /*수정해야한다.*/
             QuestionVO vo = QuestionVO.builder()
-                    .q_no((int) (int) row.getCell(idx++).getNumericCellValue())
+                    .q_num((int) (int) row.getCell(idx++).getNumericCellValue())
                     .q_view((row.getCell(idx++).getStringCellValue()))
                     .q_answer1(row.getCell(idx++).getStringCellValue())
                     .q_answer2(row.getCell(idx++).getStringCellValue())

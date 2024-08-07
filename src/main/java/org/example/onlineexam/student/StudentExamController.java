@@ -55,8 +55,9 @@ public class StudentExamController extends HttpServlet {
         log.info("DO POST");
 
         HttpSession session = req.getSession();
-//        Integer s_no = (Integer) session.getAttribute("s_no");
-        Integer s_no = 1;
+        Integer s_no = (Integer) session.getAttribute("s_no");
+        String enoString = req.getParameter("e_no");
+        Integer e_no = StringUtil.getInt(enoString, 1);
 
         Map<Integer,String> answerMap = CookieUtil.parseStr(req);
 
@@ -74,6 +75,6 @@ public class StudentExamController extends HttpServlet {
 
         }
 
-        resp.sendRedirect("/student/result");
+        resp.sendRedirect("/student/result?e_no="+e_no);
     }
 }

@@ -49,7 +49,7 @@ public class StudentLoginController extends HelloServlet {
                         resp.addCookie(loginCookie);
 
                         try {
-                            resp.sendRedirect("/student/logintest");
+                            resp.sendRedirect("/student/choice");
                             log.info("student login success");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
