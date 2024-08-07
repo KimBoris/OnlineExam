@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.example.onlineexam.QuizVO;
 import org.example.onlineexam.teacher.vo.QuestionVO;
 
 import java.io.InputStream;
@@ -15,7 +16,7 @@ import java.util.List;
 @Log4j2
 public class ExcelReader {
 
-    public static List<QuestionVO> readInputStream(InputStream in)throws Exception {
+    public static List<QuestionVO> readInputStream(InputStream in) throws Exception {
 
         XSSFWorkbook workbook = new XSSFWorkbook(in);
 
@@ -37,21 +38,22 @@ public class ExcelReader {
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();
 
-            if(row.getCell(0) == null){
+            if (row.getCell(0) == null) {
                 break;
             }
 
             int idx = 0;
 
+            /*수정해야하낟.*/
             QuestionVO vo = QuestionVO.builder()
-                    .q_num((int)(int)row.getCell(idx++).getNumericCellValue())
-                    .q_view(row.getCell(idx++).getStringCellValue())
+                    .q_no((int) (int) row.getCell(idx++).getNumericCellValue())
+                    .q_view((row.getCell(idx++).getStringCellValue()))
                     .q_answer1(row.getCell(idx++).getStringCellValue())
                     .q_answer2(row.getCell(idx++).getStringCellValue())
                     .q_answer3(row.getCell(idx++).getStringCellValue())
                     .q_answer4(row.getCell(idx++).getStringCellValue())
                     .q_answer5(row.getCell(idx++).getStringCellValue())
-                    .q_right((int)(row.getCell(idx++).getNumericCellValue()))
+                    .q_right((int) (row.getCell(idx++).getNumericCellValue()))
                     .build();
 
             log.info("---------------------");
