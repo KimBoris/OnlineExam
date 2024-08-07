@@ -5,10 +5,21 @@
     <title>Teacher Grade</title>
 </head>
 <body>
-<h1>${eno}. ${ename}</h1>
-<c:forEach items="gradeList" var="grade">
-    <a href="/teacher/detailgrade?e_no=${eno}&s.no=${grade.s_no}">${grade.s_name}</a>
-    <span>${grade.totalScore}점</span>
-</c:forEach>
+<h1>${e_no}. ${e_name}</h1>
+<ul>
+    <c:forEach items="${gradeList}" var="grade">
+        <li>
+            <span>${grade.s_name}</span>
+            <form action="/teacher/gradedetail" method="post">
+                <input type="hidden" name="e_no" value="${e_no}">
+                <input type="hidden" name="e_name" value="${e_name}">
+                <input type="hidden" name="s_no" value="${grade.s_no}">
+                <input type="hidden" name="s_name" value="${grade.s_name}">
+                <button>보기</button>
+            </form>
+        </li>
+    </c:forEach>
+</ul>
+<a href="/teacher/home">HOME</a>
 </body>
 </html>

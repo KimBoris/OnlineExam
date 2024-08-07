@@ -19,7 +19,7 @@ public enum QuestionDAO {
 
     QuestionDAO(){}
 
-    public void insertExam(String e_name, List<QuestionVO> voList) throws SQLException {
+    public void insertExam(String e_name,int t_no, List<QuestionVO> voList) throws SQLException {
 
         // Exam 테이블 INSERT SQL문
         String sql0 = """
@@ -32,8 +32,7 @@ public enum QuestionDAO {
         @Cleanup Connection con = ConnectionUtil.INSTANCE.getDs().getConnection();
         @Cleanup PreparedStatement ps = con.prepareStatement(sql0);
 
-        Integer t_no = 2; // 세션에서 받아올값.
-        ps.setInt(1, t_no);
+        ps.setInt(1, t_no); // 세션에서 받아오는 t_no
         ps.setString(2, e_name);
 
         int exam_check = ps.executeUpdate();

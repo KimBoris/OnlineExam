@@ -13,7 +13,6 @@ public class ExamVO {
 
     private Integer e_no;
     private String e_name;
-    private String t_name;
 
     private Integer t_no;
 

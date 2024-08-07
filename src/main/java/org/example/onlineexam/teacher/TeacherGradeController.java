@@ -18,24 +18,24 @@ import java.util.List;
 @WebServlet(value = "/teacher/grade")
 @Log4j2
 public class TeacherGradeController extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.info("doGet grade page");
 
         // 파라미터 받아오기 - 시험 번호
         String enoString = req.getParameter("e_no");
-        Integer eno = StringUtil.getInt(enoString, 1);
+        Integer e_no = StringUtil.getInt(enoString, 1);
 
         // 파라미터 받아오기 - 시험 이름
-        String ename = req.getParameter("e_name");
+        String e_name = req.getParameter("e_name");
 
         try {
-            // 학생별 성정 리스트 받아오기
-            List<GradeVO> gradeList = TeacherDAO.INSTANCE.getGrade(eno);
+            // 시험을 본 학생 리스트 받아오기
+            List<GradeVO> gradeList = TeacherDAO.INSTANCE.getGrade(e_no);
             req.setAttribute("gradeList", gradeList);
-            req.setAttribute("eno", eno);
-            req.setAttribute("ename", ename);
+            req.setAttribute("e_no", e_no);
+            req.setAttribute("e_name", e_name);
 
             log.info("examList: " + gradeList);
 
@@ -48,6 +48,5 @@ public class TeacherGradeController extends HttpServlet {
         }//end catch
 
         req.getRequestDispatcher("/WEB-INF/teacher/grade.jsp").forward(req, resp);
-
     }
 }//end TeacherGradeController
