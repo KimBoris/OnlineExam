@@ -20,7 +20,9 @@ public class AnswerSheetController extends HttpServlet {
         Map<Integer,String> answerMap = CookieUtil.parseStr(req);
 
         log.info("ANswerMap = "+ answerMap);
+        log.info("ANswerMapSize = "+ answerMap.size());
         req.setAttribute("answerMap", answerMap);
+        req.setAttribute("mapSize", answerMap.size());
 
         req.getRequestDispatcher("/WEB-INF/student/answerSheet.jsp").forward(req, resp);
 

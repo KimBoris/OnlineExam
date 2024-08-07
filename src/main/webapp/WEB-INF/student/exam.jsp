@@ -57,18 +57,18 @@
         height: 100vh;
     }
 </style>
-<h1> e_no : ${e_no}</h1>
+
 <ul class="navigator">
     <c:forEach items="${questionVOList}" var="question">
         <li>
-            <a onclick="move(${question.q_no})"> ${question.q_no}번 </a>
+            <a onclick="move(${question.q_num})"> ${question.q_num}번 </a>
         </li>
     </c:forEach>
 </ul>
 
 <ul class="quizList">
     <c:forEach items="${questionVOList}" var="question">
-        <div class="quizDiv" id="quiz${question.q_no}">
+        <div class="quizDiv" id="quiz${question.q_num}">
             <div>
                 <h2>${question.q_num}번 문제</h2>
                 <p>${question.q_view}</p>
@@ -77,6 +77,7 @@
                 <form method="post" action="/check/answer" target="exam_test">
 
                     <input type="hidden" name="e_no" value="${e_no}">
+                    <input type="hidden" name="q_num" value="${question.q_num}">
                     <input type="hidden" name="q_no" value="${question.q_no}">
                     <input type="radio" name="answer" value="1"> ${question.q_answer1} <br>
                     <input type="radio" name="answer" value="2"> ${question.q_answer2} <br>
@@ -89,6 +90,9 @@
         </div>
     </c:forEach>
 </ul>
+<form action="/student/exam" method="post">
+    <button type="submit">최종 제출</button>
+</form>
 
 <div class="answerSheet">
     <iframe name="exam_test" src="/student/answerSheet"></iframe>
