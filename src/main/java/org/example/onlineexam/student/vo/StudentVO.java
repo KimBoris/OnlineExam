@@ -1,4 +1,4 @@
-package org.example.onlineexam.teacher.vo;
+package org.example.onlineexam.student.vo;
 
 import lombok.*;
 
@@ -9,11 +9,11 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class TeacherVO {
-    private Integer t_no;
-    private String t_name;
-    private String t_id;
-    private String t_pw;
+public class StudentVO {
+    private Integer s_no;
+    private String s_name;
+    private String s_id;
+    private String s_pw;
     private Timestamp create_date;
     private Timestamp mod_date;
     private boolean del_flag;
