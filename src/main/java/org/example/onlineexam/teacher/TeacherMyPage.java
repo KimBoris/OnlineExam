@@ -15,7 +15,7 @@ public class TeacherMyPage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-       // req.getRequestDispatcher("/WEB-INF/teacher/mypage.jsp").forward(req, resp);
+       // req.getRequestDispatcher("/WEB-INF/teacher/logintest.jsp").forward(req, resp);
 
         HttpSession session = req.getSession(false);
 
@@ -27,6 +27,6 @@ public class TeacherMyPage extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/teacher/mypage.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/teacher/logintest.jsp").forward(req, resp);
     }
 }
